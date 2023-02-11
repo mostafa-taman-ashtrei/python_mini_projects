@@ -9,17 +9,17 @@ playing, invalid = True, False
 def choose_winner(player, computer):
     # It's a tie
     if player == computer:
-        return ('it\'s a tie')
+        return ("it's a tie |:")
 
     # The Player Won
     elif ((player == "rock" and computer == "scissors") or
           (player == "paper" and computer == "rock") or
             (player == "scissors" and computer == "paper")):
-        return ("You are the winner, congratulations!")
+        return ("You won, congratulations (:")
 
     # The Computer Won
     else:
-        return ("You lost, sorry!")
+        return ("You lost, better luck next time ):")
 
 
 while playing:
@@ -37,7 +37,9 @@ while playing:
 
     if player_choice in options:
         print(f"You picked {player_choice} {draw(player_choice)}")
+        print("------------------------------------------------------------")
         print(f"The computer picked {computer_choice} {draw(computer_choice)}")
+        print("------------------------------------------------------------")
         print(choose_winner(player_choice, computer_choice))
 
     elif player_choice == 'q':
@@ -45,3 +47,13 @@ while playing:
 
     else:
         invalid = True
+
+    # Clear the screen & play again
+    if playing and not invalid:
+        replay = input(
+            "Wanna play again? Type y to replay\nor enter anything else to end the game\n").lower()
+        print()
+        playing = replay == "y"
+
+    # Clear the screen
+    os.system('cls' if os.name == 'nt' else 'clear')
